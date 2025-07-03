@@ -2,6 +2,11 @@
 
 All source code are in src folder
 
+Our environment : 
+python version : 3.10.13
+IDE : Spyder
+Required Packaged : pydantic 2.10.1, numpy, scipy, matplotlib
+
 I.AC analysis :
 1. run test_func.py
 2. enter circuit file's name
@@ -24,5 +29,8 @@ III. Transient analysis
 2. enter circuit file's name
 3. enter command as following template  tran <step size> <stop time>
    Eg. tran 0.1 1
-   notice : The unit above is sec.
+   notice : for detail information regarding to number's unit, please look utils.py .
+
+For more detailed information, please read files in ppt and Final_Report folders.
+
    
