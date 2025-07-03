@@ -2,13 +2,13 @@
 
 All source code are in src folder
 
-Our environment : 
+Our environment: 
 python version : 3.10.13  
 IDE : Spyder  
 Required Packaged : pydantic 2.10.1, numpy, scipy, matplotlib  
 
 
-I.AC analysis :
+I. AC analysis:
 1. run test_func.py
 2. enter circuit file's name
 3. enter command as following template
@@ -16,7 +16,7 @@ I.AC analysis :
   Eg. ac dec/oct/lin 100 1 100000
 notice : frequency must > 0
 
-II. DC analysis
+II. DC analysis:
 1. run test_func.py
 2. enter circuit file's name
 3. enter command as following template
@@ -25,7 +25,7 @@ II. DC analysis
 notice : If end voltage<start voltage increment must < 0  
   Eg. dc Vin 2 0 -0.01
 
-III. Transient analysis
+III. Transient analysis:
 1. run transient_0327.py
 2. enter circuit file's name
 3. enter command as following template  tran <step size> <stop time>
