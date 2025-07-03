@@ -12,7 +12,7 @@ I.AC analysis :
 2. enter circuit file's name
 3. enter command as following template
   ac <variation type> <number of points> <start frequency> <stop frequency>
-  Eg. ac dec/oct/lin 100 1 100000
+  Eg. ac dec/oct/lin 100 1 100000 \n
 notice : frequency must > 0
 
 II. DC analysis
