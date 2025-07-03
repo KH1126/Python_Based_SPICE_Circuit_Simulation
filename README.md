@@ -3,16 +3,17 @@
 All source code are in src folder
 
 Our environment : 
-python version : 3.10.13
-IDE : Spyder
-Required Packaged : pydantic 2.10.1, numpy, scipy, matplotlib
+python version : 3.10.13  
+IDE : Spyder  
+Required Packaged : pydantic 2.10.1, numpy, scipy, matplotlib  
+
 
 I.AC analysis :
 1. run test_func.py
 2. enter circuit file's name
 3. enter command as following template
   ac <variation type> <number of points> <start frequency> <stop frequency>
-  Eg. ac dec/oct/lin 100 1 100000 \n
+  Eg. ac dec/oct/lin 100 1 100000
 notice : frequency must > 0
 
 II. DC analysis
