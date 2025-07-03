@@ -29,7 +29,7 @@ III. Transient analysis
 1. run transient_0327.py
 2. enter circuit file's name
 3. enter command as following template  tran <step size> <stop time>
-   Eg. tran 0.1 1
+   Eg. tran 0.1 1  
    notice : for detail information regarding to number's unit, please look utils.py .
 
 For more detailed information, please read files in ppt and Final_Report folders.
