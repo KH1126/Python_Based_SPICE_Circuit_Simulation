@@ -1,6 +1,6 @@
 from utils import unit_symbol, plot_picture,plot_picture_trans
 # from new_parser import parse
-from parse import parse
+from new_parser import parse
 from transientfunc_0201 import step_euler,BDF2
 from dc_bias import Dc_bias
 #from dc_biasing import Dc_bias

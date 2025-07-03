@@ -117,9 +117,10 @@ def plot_picture(templist,namelist,times,result,cmd,x,circuit_name):
         plt.title(circuit_name,fontsize=20)
 # =============================================================================
 # =============================================================================
-        plt.ylabel("db(vo/vi)",fontsize=14)
+        plt.ylabel("value",fontsize=14)
         plt.plot(x,y,linewidth=1)
         # 實線
+        
         plt.plot(x, y, linestyle='-', label=object_value1)
         
         # 虛線
@@ -129,11 +130,13 @@ def plot_picture(templist,namelist,times,result,cmd,x,circuit_name):
         if(operator==" "):
             plt.plot(x, z, linestyle='--', label=object_value2)
             # 圖例
-        file_name="RLC"+'_output.txt'
-        file=open(file_name,'w')
-        for i in range(len((x))):
-            file.write(str(x[i])+" "+str(y[i])+"\n")
-        file.close()
+# =============================================================================
+#         file_name="RLC"+'_output.txt'
+#         file=open(file_name,'w')
+#         for i in range(len((x))):
+#             file.write(str(x[i])+" "+str(y[i])+"\n")
+#         file.close()
+# =============================================================================
         plt.legend()     
         plt.grid()
         plt.rcParams['figure.dpi'] = 300

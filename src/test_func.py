@@ -1,6 +1,6 @@
 from utils import unit_symbol, plot_picture,plot_picture_trans
 from calculation_module_0129 import ac_analysis,Dc_analysis
-from parse import parse
+from new_parser import parse
 import numpy as np
 import sympy as sp
 from dc_bias import Dc_bias

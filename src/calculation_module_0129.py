@@ -624,6 +624,7 @@ def Dc_analysis(
     first_print_maxtrix = True
 
     while voltage != end_V :
+        #print(voltage)
         vectorB_mos = np.zeros(matrix_size)
         matrixA_mos = np.zeros((matrix_size, matrix_size))
         iti_time = 0
@@ -1746,12 +1747,14 @@ def Dc_analysis(
             counter = counter + 1
         else:
             continue
-    path='toneg.txt'
-    f=open(path,'w')
-    for i in range (len(result)):
-        lines=[str(x_axis[i])," ",str(result[i][2]),'\n']
-        f.writelines(lines)
-    f.close()
+# =============================================================================
+#     path='toneg.txt'
+#     f=open(path,'w')
+#     for i in range (len(result)):
+#         lines=[str(x_axis[i])," ",str(result[i][2]),'\n']
+#         f.writelines(lines)
+#     f.close()
+# =============================================================================
     plot_picture_dc(templist, namelist, times, result, cmd, x_axis,circuit_name,object_source)
 
 
