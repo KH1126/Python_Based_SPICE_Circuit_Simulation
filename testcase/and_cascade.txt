@@ -1,0 +1,31 @@
+*and cascade
+
+.subckt inv in out VDD VSS 
+Mp1  out in VDD VDD p_18 w=0.4u l=0.2u
+Mn1 out in VSS VSS n_18 w=0.4u l=0.2u
+*c1 out 0 100p 
+.ends
+
+.subckt and a b out VDD VSS
+Mp0 out_not a VDD VDD p_18 w=0.4u l=0.2u
+Mp1 out_not b VDD VDD p_18 w=0.4u l=0.2u
+Mn0 out_not a n1 VSS n_18 w=0.4u l=0.2u
+Mn1 n1 b VSS VSS n_18 w=0.4u l=0.2u
+xinv out_not out VDD VSS inv 
+*c1 out 0 1n
+.ends
+
+.subckt and_cas clk out VDD VSS
+Xand1 VDD clk a VDD VSS and
+Xand2 a VDD out VDD VSS and
+.ends
+
+Xand_cas1 clk out1 VDD VSS and_cas
+
+Xand_cas1 out1 out2 VDD VSS and_cas
+
+Vd VDD 0 dc 2
+Vs VSS 0 dc 0
+Vclk clk 0 pulse 0 2 160u 40u 40u 160u 400u 0
+
+.end

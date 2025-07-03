@@ -1,0 +1,69 @@
+*DFF
+.subckt inv input output VDD VSS
+Mp0 output input VDD VDD p_18 w=0.8u l=0.2u
+Mn0 output input VSS VSS n_18 w=0.4u l=0.2u
+*c1 output 0 1n
+.ends
+
+.subckt nand3 a b c output VDD VSS
+Mp0 out a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out b VDD VDD p_18 w=0.8u l=0.2u
+MP2 out c VDD VDD p_18 w=0.8u l=0.2u
+Mn0 out a v1 VSS n_18 w=0.4u l=0.2u
+Mn1 v1 b v2 VSS n_18 w=0.4u l=0.2u
+Mn2 v2 c VSS VSS n_18 w=0.4u l=0.2u
+*c1 output 0 1n
+.ends
+
+.subckt nor a b output VDD VSS
+Mp0 n0 a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out b n0 VDD p_18 w=0.8u l=0.2u
+Mn0 out a VSS VSS n_18 w=0.4u l=0.2u
+Mn1 out b VSS VSS n_18 w=0.4u l=0.2u
+c1 output 0 1n
+.ends
+
+.subckt JK CLK J K Q Qbar VDD VSS
+Xand1 Q CLK K O1 VDD VSS and3
+Xand2 Qbar CLK J O2 VDD VSS and3
+Xnor1 O1 Qbar Q VDD VSS nor
+Xnor2 O2 Q Qbar VDD VSS nor
+.ends
+
+.subckt nand a b out VDD VSS
+Mp0 out a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out b VDD VDD p_18 w=0.8u l=0.2u
+Mn0 out a v2 VSS n_18 w=0.4u l=0.2u
+Mn1 v2 b VSS VSS n_18 w=0.4u l=0.2u
+*c1 output 0 1n
+.ends
+
+.subckt DFF CLK D Q Q_bar VDD VSS
+Xinv D D_inv VDD VSS inv
+Xinv2 CLK CLK_inv VDD VSS inv
+
+Xnand1 D CLK_inv a1 VDD VSS  nand 
+Xnand2 D_inv CLK_inv a2 VDD VSS nand
+Xnand3 a1 R S VDD VSS nand
+Xnand4 a2 S R VDD VSS nand
+
+Xnand5 S CLK a3 VDD VSS nand
+Xnand6 R CLK a4 VDD VSS nand
+*Xnand7 a3 Q_bar RESET Q VDD VSS nand3
+Xnand7 a3 Q_bar Q VDD VSS nand
+xnand8 a4 Q Q_bar VDD VSS nand
+*c1 Q 0 1n
+*c2 Q_bar 0 1n
+.ends
+
+*counter
+
+XDFF_0 CLK D_0 Q_0 D_0  VDD VSS DFF
+XDFF_1 D_0 D_1 Q_1 D_1 VDD VSS DFF
+VD VDD 0 dc 2
+VS VSS 0 dc 0
+*VD1 VDD1 0 dc 2
+*VS1 VSS1 0 dc 0
+*Vi Vin 0 pulse 0 2 100m 0m 0m 100m 200m 0
+Vclk CLK 0 pulse 0 2 50m 0m 0m 51m 102m 0
+.end

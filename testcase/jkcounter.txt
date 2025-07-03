@@ -1,0 +1,121 @@
+**jkcounter
+.subckt inv in out VDD VSS 
+Mp1  out in VDD VDD p_18 w=0.4u l=0.2u
+Mn1 out in VSS VSS n_18 w=0.4u l=0.2u
+c1 out 0 1p 
+r1 out 0 100meg
+.ends
+
+.subckt xor inX inY out VDD VSS 
+Xinv_X inX inX_not VDD VSS inv
+Xinv_Y inY inY_not VDD VSS inv
+Mn1 n1 inY VSS VSS n_18 w=0.36u l=0.18u
+Mn2 out inX n1 VSS n_18 w=0.36u l=0.18u
+Mn3 n2 inY_not VSS VSS n_18 w=0.36u l=0.18u
+Mn4 out inX_not n2 VSS n_18 w=0.36u l=0.18u
+Mp1 out inY_not p3 VDD p_18 w=0.18u l=0.18u
+Mp2 out inX_not p3 VDD p_18 w=0.18u l=0.18u
+Mp3 p3 inY VDD VDD p_18 w=0.36u l=0.18u
+Mp4 p3 inX VDD VDD p_18 w=0.36u l=0.18u
+c1 out 0 100p 
+r1 out 0 100meg
+.ends
+
+.subckt and a b out VDD VSS
+Mp0 out_not a VDD VDD p_18 w=0.4u l=0.2u
+Mp1 out_not b VDD VDD p_18 w=0.4u l=0.2u
+Mn0 out_not a n1 VSS n_18 w=0.4u l=0.2u
+Mn1 n1 b VSS VSS n_18 w=0.4u l=0.2u
+xinv out_not out VDD VSS inv 
+c1 out 0 100p
+r1 out 0 100meg
+.ends
+
+.subckt and3 a b c out VDD VSS
+Mp0 out_not a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out_not b VDD VDD p_18 w=0.8u l=0.2u
+MP2 out_not c VDD VDD p_18 w=0.8u l=0.2u
+Mn0 out_not a v1 VSS n_18 w=0.4u l=0.2u
+Mn1 v1 b v2 VSS n_18 w=0.4u l=0.2u
+Mn2 v2 c VSS VSS n_18 w=0.4u l=0.2u
+xinv out_not out VDD VSS inv
+c1 out 0 100p
+r1 out 0 100meg
+.ends
+
+.subckt nand a b out VDD VSS
+Mp0 out a VDD VDD p_18 w=0.4u l=0.2u
+Mp1 out b VDD VDD p_18 w=0.4u l=0.2u
+Mn0 out a n1 VSS n_18 w=0.4u l=0.2u
+Mn1 n1 b VSS VSS n_18 w=0.4u l=0.2u
+c1 out 0 100p
+r1 out 0 100meg
+.ends
+
+
+.subckt nand3 a b c out VDD VSS
+Mp0 out a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out b VDD VDD p_18 w=0.8u l=0.2u
+MP2 out c VDD VDD p_18 w=0.8u l=0.2u
+Mn0 out a v1 VSS n_18 w=0.4u l=0.2u
+Mn1 v1 b v2 VSS n_18 w=0.4u l=0.2u
+Mn2 v2 c VSS VSS n_18 w=0.4u l=0.2u
+c1 out 0 100p
+r1 out 0 100meg
+.ends
+
+.subckt nor a b out VDD VSS
+Mp0 n0 a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out b n0 VDD p_18 w=0.8u l=0.2u
+Mn0 out a VSS VSS n_18 w=0.4u l=0.2u
+Mn1 out b VSS VSS n_18 w=0.4u l=0.2u
+c1 out 0 100p
+r1 out 0 100meg
+.ends
+
+.subckt SR S R En Q Qbar VDD VSS
+Xnand1 S En y1 VDD VSS nand
+Xnand2 R En y2 VDD VSS nand
+Xnand3 y1 Qbar Q VDD VSS nand
+Xnand4 y2 Q Qbar VDD VSS nand
+c1 Q 0 100p
+r1 Q 0 100meg
+.ends
+
+.subckt JK CLK J K Q Qbar VDD VSS
+Xinv CLK CLK_not VDD VSS inv
+Xand3_1 J Qbar CLK_not s1 VDD VSS and3
+Xand3_2 K Q CLK_not r1 VDD VSS and3
+XSR1 s1 r1 VDD P Pbar VDD VSS SR
+Xand3 P CLK s2 VDD VSS and
+Xand4 Pbar CLK r2 VDD VSS and
+XSR2 s2 r2 VDD Q Qbar VDD VSS SR
+c1 Q 0 100p
+r1 Q 0 100meg
+c2 Qbar 0 100p
+r2 Qbar 0 100meg
+.ends
+
+XJK0 clk En1 En Q_0 Q_0bar VDD VSS JK
+Ven En 0 dc 2
+Vclr0 En1 0  pulse 0 2 80u 40u 40u 10000000u 1000000000000u 0
+
+XJK1 Q_0 J11 J1 Q_1 Q_1bar VDD VSS JK
+VJ1 J1 0 dc 2
+Vclr1 J11 0  pulse 0 2 80u 40u 40u 10000000u 1000000000000u 0
+
+XJK2 Q_1 J21 J2 Q_2 Q_2bar VDD VSS JK
+VJ2 J2 0 dc 2
+Vclr2 J21 0  pulse 0 2 80u 40u 40u 10000000u 1000000000000u 0
+
+XJK3 Q_2 J31 J3 Q_3 Q_3bar VDD VSS JK
+VJ3 J3 0 dc 2
+Vclr3 J31 0  pulse 0 2 80u 40u 40u 10000000u 1000000000000u 0
+
+Vclk clk 0 pulse 0 2 160u 40u 40u 160u 400u 0
+*Vclr reset 0  pulse 0 0 80u 40u 40u 10000000u 1000000000000u 0
+
+VD VDD 0 dc 2
+VS VSS 0 dc 0
+
+.end

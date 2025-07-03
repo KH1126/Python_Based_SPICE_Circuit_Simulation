@@ -1,0 +1,10 @@
+Ddouble_transistor_load
+
+Mn1 VDD VDD output output n_18 w=0.8u l=0.4u
+Mn2 output input 0 0 n_18 w=0.8u l=0.4u
+Mn3 output input 0 0 n_18 w=0.8u l=0.4u
+vin_dc input_dc  0 dc 4
+Vin input input_dc ac 1
+VVDD VDD 0 dc 10
+Vs Vss 0 dc 0
+.end

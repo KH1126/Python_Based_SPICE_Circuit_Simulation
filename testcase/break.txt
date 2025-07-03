@@ -1,0 +1,73 @@
+
+**adder
+Mp1_inv_X inX_not__xor_G1 X0 VDD VDD p_18 w=0.4u l=0.2u
+Mn1_inv_X inX_not__xor_G1 X0 VSS VSS n_18 w=0.4u l=0.2u
+c1_inv_X inX_not__xor_G1 0 1n
+Mp1_inv_Y inY_not__xor_G1 Y0 VDD VDD p_18 w=0.4u l=0.2u
+Mn1_inv_Y inY_not__xor_G1 Y0 VSS VSS n_18 w=0.4u l=0.2u
+c1_inv_Y inY_not__xor_G1 0 1n
+Mn1__xor_G1 n1__xor_G1 Y0 VSS VSS n_18 w=0.36u l=0.18u
+Mn2__xor_G1 P__fa0 X0 n1__xor_G1 VSS n_18 w=0.36u l=0.18u
+Mn3__xor_G1 n2__xor_G1 inY_not__xor_G1 VSS VSS n_18 w=0.36u l=0.18u
+Mn4__xor_G1 P__fa0 inX_not__xor_G1 n2__xor_G1 VSS n_18 w=0.36u l=0.18u
+Mp1__xor_G1 P__fa0 inY_not__xor_G1 n3__xor_G1 VDD p_18 w=0.36u l=0.18u
+Mp2__xor_G1 P__fa0 inX_not__xor_G1 n3__xor_G1 VDD p_18 w=0.36u l=0.18u
+Mp3__xor_G1 n3__xor_G1 Y0 VDD VDD p_18 w=0.36u l=0.18u
+Mp4__xor_G1 n3__xor_G1 X0 VDD VDD p_18 w=0.36u l=0.18u
+c1__xor_G1 P__fa0 0 1n
+Mp1_inv_X inX_not__xor_G3 P__fa0 VDD VDD p_18 w=0.4u l=0.2u
+Mn1_inv_X inX_not__xor_G3 P__fa0 VSS VSS n_18 w=0.4u l=0.2u
+c1_inv_X inX_not__xor_G3 0 1n
+Mp1_inv_Y inY_not__xor_G3 C0 VDD VDD p_18 w=0.4u l=0.2u
+Mn1_inv_Y inY_not__xor_G3 C0 VSS VSS n_18 w=0.4u l=0.2u
+c1_inv_Y inY_not__xor_G3 0 1n
+Mn1__xor_G3 n1__xor_G3 C0 VSS VSS n_18 w=0.36u l=0.18u
+Mn2__xor_G3 S_0 P__fa0 n1__xor_G3 VSS n_18 w=0.36u l=0.18u
+Mn3__xor_G3 n2__xor_G3 inY_not__xor_G3 VSS VSS n_18 w=0.36u l=0.18u
+Mn4__xor_G3 S_0 inX_not__xor_G3 n2__xor_G3 VSS n_18 w=0.36u l=0.18u
+Mp1__xor_G3 S_0 inY_not__xor_G3 n3__xor_G3 VDD p_18 w=0.36u l=0.18u
+Mp2__xor_G3 S_0 inX_not__xor_G3 n3__xor_G3 VDD p_18 w=0.36u l=0.18u
+Mp3__xor_G3 n3__xor_G3 C0 VDD VDD p_18 w=0.36u l=0.18u
+Mp4__xor_G3 n3__xor_G3 P__fa0 VDD VDD p_18 w=0.36u l=0.18u
+c1__xor_G3 S_0 0 1n
+Mp0__and_G2 out_not__and_G2 X0 VDD VDD p_18 w=0.4u l=0.2u
+Mp1__and_G2 out_not__and_G2 Y0 VDD VDD p_18 w=0.4u l=0.2u
+Mn0__and_G2 out_not__and_G2 X0 n1__and_G2 VSS n_18 w=0.4u l=0.2u
+Mn1__and_G2 n1__and_G2 Y0 VSS VSS n_18 w=0.4u l=0.2u
+Mp1_inv K__fa0 out_not__and_G2 VDD VDD p_18 w=0.4u l=0.2u
+Mn1_inv K__fa0 out_not__and_G2 VSS VSS n_18 w=0.4u l=0.2u
+c1_inv K__fa0 0 1n
+c1__and_G2 K__fa0 0 1n
+Mp0__and_G4 out_not__and_G4 P__fa0 VDD VDD p_18 w=0.4u l=0.2u
+Mp1__and_G4 out_not__and_G4 C0 VDD VDD p_18 w=0.4u l=0.2u
+Mn0__and_G4 out_not__and_G4 P__fa0 n1__and_G4 VSS n_18 w=0.4u l=0.2u
+Mn1__and_G4 n1__and_G4 C0 VSS VSS n_18 w=0.4u l=0.2u
+Mp1_inv M__fa0 out_not__and_G4 VDD VDD p_18 w=0.4u l=0.2u
+Mn1_inv M__fa0 out_not__and_G4 VSS VSS n_18 w=0.4u l=0.2u
+c1_inv M__fa0 0 1n
+c1__and_G4 M__fa0 0 1n
+Mn1__or_G5 out_not__or_G5 K__fa0 VSS VSS n_18 w=0.36u l=0.18u
+Mn2__or_G5 out_not__or_G5 M__fa0 VSS VSS n_18 w=0.36u l=0.18u
+Mp1__or_G5 out_not__or_G5 M__fa0 n1__or_G5 VDD p_18 w=0.36u l=0.18u
+Mp2__or_G5 n1__or_G5 K__fa0 VDD VDD p_18 w=0.36u l=0.18u
+Mp1_inv_out C1 out_not__or_G5 VDD VDD p_18 w=0.4u l=0.2u
+Mn1_inv_out C1 out_not__or_G5 VSS VSS n_18 w=0.4u l=0.2u
+c1_inv_out C1 0 1n
+c1__fa0 C1 0 1n
+*c1 S_0 VSS 1f
+*X_fa1 X1 Y1 C1 C2 S_1 VDD VSS fa
+*c2 S_1 VSS 1f
+*X_fa2 X2 Y2 C2 C3 S_2 VDD VSS fa
+*c3 S_2 VSS 1f
+*c4 C3 VSS 1f
+VX0 X0 0 dc 0
+*VY0 Y0 0 pulse 0 2 80u 20u 20u 80u 200u 0
+VY0 Y0 0 dc 2
+*VX1 X1 0 dC 0
+*VY1 Y1 0 dC 2
+*VX2 X2 0 dC 0
+*VY2 Y2 0 dC 2
+VC0 C0 0 pulse 0 2 160u 40u 40u 160u 400u 0
+VD VDD 0 dc 2
+Vs VSS 0 dc 0 
+.end

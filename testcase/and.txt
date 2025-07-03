@@ -1,0 +1,14 @@
+nand gate
+*.model N_18 NMOS(Vto=0.4 Lambda=0.02)
+*.model P_18 PMOS(Vto=-0.4 Lambda=0.02)
+Mp1 output input VDD VDD p_18 w=1.6u l=0.4u
+Mp2 output input2 VDD VDD p_18 w=1.6u l=0.4u
+Mn1 n1 input VSS VSS n_18 w=0.8u l=0.4u
+Mn2 output input2 n1 VSS n_18 w=0.8u l=0.4u
+C1 output 0 1f
+VVDD VDD 0 dc 1.8
+Va input 0 SIN 0 1.8 50
+*Va input 0 dc 0
+vb input2 0 dc 1
+VS VSS 0 dc 0
+.end

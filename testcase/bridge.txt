@@ -1,0 +1,10 @@
+bridge retic
+vin n1 0 SIN 0 5 50
+d1 n1 n2 diode1
+r1 n2 n3 2k
+d3 n3 n1 diode1
+d2 n3 0 diode1
+d4 0 n2 diode1
+.model diode1 D
+.end
+

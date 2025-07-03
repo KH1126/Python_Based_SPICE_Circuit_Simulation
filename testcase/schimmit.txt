@@ -1,0 +1,13 @@
+schnitt trigger
+Mp1 p1 input VDD VDD p_18 w=1.6u l=0.4u
+Mp2 output input p1 VDD p_18 w=1.6u l=0.4u
+Mp3 VSS output p1 VDD p_18 w=1.28u l=0.4u
+Mn1 n1 input VSS VSS n_18 w=0.8u l=0.4u
+Mn2 output input n1 VSS n_18 w=0.8u l=0.4u
+Mn3 VDD output n1 VSS n_18 w=0.64u l=0.4u
+C1 output 0 1f
+VVDD VDD 0 dc 1.8
+*Vg input 0 SIN 0 1.8 50
+Vg input 0 dc 0
+VS VSS 0 dc 0
+.end

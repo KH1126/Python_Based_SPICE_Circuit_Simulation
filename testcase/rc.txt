@@ -1,0 +1,5 @@
+RC Circuit Transient Response
+r1 1 2 10k 
+c1 2 0 1u
+vin 1 0 ac 5
+.end

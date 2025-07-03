@@ -1,0 +1,66 @@
+**adder
+.subckt inv in out VDD VSS 
+Mp1  out in VDD VDD p_18 w=0.4u l=0.2u
+Mn1 out in VSS VSS n_18 w=0.4u l=0.2u
+c1 out 0 0.1n
+.ends
+
+.subckt xor inX inY out VDD VSS 
+Xinv_X inX inX_not VDD VSS inv
+Xinv_Y inY inY_not VDD VSS inv
+Mn1 n1 inY VSS VSS n_18 w=0.36u l=0.18u
+Mn2 out inX n1 VSS n_18 w=0.36u l=0.18u
+Mn3 n2 inY_not VSS VSS n_18 w=0.36u l=0.18u
+Mn4 out inX_not n2 VSS n_18 w=0.36u l=0.18u
+Mp1 out inY_not n3 VDD p_18 w=0.36u l=0.18u
+Mp2 out inX_not n3 VDD p_18 w=0.36u l=0.18u
+Mp3 n3 inY VDD VDD p_18 w=0.36u l=0.18u
+Mp4 n3 inX VDD VDD p_18 w=0.36u l=0.18u
+c1 out 0 0.1n
+.ends
+.subckt and a b out VDD VSS
+Mp0 out_not a VDD VDD p_18 w=0.4u l=0.2u
+Mp1 out_not b VDD VDD p_18 w=0.4u l=0.2u
+Mn0 out_not a n1 VSS n_18 w=0.4u l=0.2u
+Mn1 n1 b VSS VSS n_18 w=0.4u l=0.2u
+xinv out_not out VDD VSS inv 
+c1 out 0 1n
+*c1 out 0 0.1n
+.ends
+
+
+.subckt or inX inY out VDD VSS
+Mn1 out_not inY VSS VSS n_18 w=0.36u l=0.18u
+Mn2 out_not inX VSS VSS n_18 w=0.36u l=0.18u
+Mp1 out_not inX n1 VDD p_18 w=0.36u l=0.18u
+Mp2 n1 inY VDD VDD p_18 w=0.36u l=0.18u
+Xinv_out out_not out VDD VSS inv
+c1 out 0 0.1n
+.ends
+.subckt fa X Y C Cout S VDD VSS
+X_xor_G1 X Y P VDD VSS xor
+X_xor_G3 P C S VDD VSS xor
+X_and_G2 X Y K VDD VSS and
+X_and_G4 P C M VDD VSS and
+X_or_G5 M K Cout VDD VSS or
+*c2 S 0 0.1n
+c1 Cout 0 0.1n
+.ends
+X_fa0 X0 Y0 C0 C1 S_0 VDD VSS fa
+*c1 S_0 VSS 1f
+X_fa1 X1 Y1 C1 C2 S_1 VDD VSS fa
+*c2 S_1 VSS 1f
+*X_fa2 X2 Y2 C2 C3 S_2 VDD VSS fa
+*c3 S_2 VSS 1f
+*c4 C3 VSS 1f
+VX0 X0 0 dC 0
+*VY0 Y0 0 pulse 0 2 80u 20u 20u 80u 200u 0
+VY0 Y0 0 dc 1
+VX1 X1 0 dC 0
+VY1 Y1 0 dC 1
+*VX2 X2 0 dC 0
+*VY2 Y2 0 dC 1
+VC0 C0 0 pulse 0 2 160u 40u 40u 160u 400u 0
+VD VDD 0 dc 1
+Vs VSS 0 dc 0 
+.end

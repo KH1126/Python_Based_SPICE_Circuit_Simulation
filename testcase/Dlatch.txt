@@ -1,0 +1,38 @@
+Dlatch
+*Model and Temperature
+
+.subckt inv input output VDD VSS
+Mp0 output input VDD VDD p_18 w=0.8u l=0.2u
+Mn0 output input VSS VSS n_18 w=0.4u l=0.2u
+.ends
+
+*not gate
+.subckt inv input output VDD VSS
+Mp0 output input VDD VDD p_18 w=0.8u l=0.2u
+Mn0 output input VSS VSS n_18 w=0.4u l=0.2u
+.ends
+
+*nand gate
+.subckt nand a b out VDD VSS
+Mp0 out a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out b VDD VDD p_18 w=0.8u l=0.2u
+Mn0 out a v2 VSS n_18 w=0.4u l=0.2u
+Mn1 v2 b VSS VSS n_18 w=0.4u l=0.2u
+c1 output 0 1n
+.ends
+
+.subckt Dlatch E D Q Qbar VDD VSS
+Xnand1 D E a1 VDD VSS nand
+Xinv D a0 VDD VSS inv
+Xnand2 a0 E a2 VDD VSS nand
+Xnand3 Q a1 Qbar VDD VSS nand
+Xnand4 a2 Qbar Q VDD VSS nand
+.ends
+
+Xdlatch En Data Q Q_bar VDD VSS Dlatch
+VD VDD 0 dc 2 
+VS VSS 0 dc 0
+c1 Q 0 1n
+Ven En 0 pulse 0 2 100m 0m 0m 100m 200m 0
+Vdata Data 0 pulse 0 2 25m 0m 0m 25m 50m 0
+.end

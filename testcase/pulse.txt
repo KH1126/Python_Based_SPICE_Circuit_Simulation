@@ -1,0 +1,6 @@
+*test pulse
+v1 node1 0 pulse 20 -10 0n 0n 0n 50m 100m 0
+
+r1 node1 0 200
+
+.end

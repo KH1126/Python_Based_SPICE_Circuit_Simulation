@@ -1,0 +1,86 @@
+*DFF
+.subckt inv input output VDD VSS
+Mp0 output input VDD VDD p_18 w=0.8u l=0.2u
+Mn0 output input VSS VSS n_18 w=0.4u l=0.2u
+c1 output 0 1n
+r2 output 0 100meg
+.ends
+
+.subckt or a b out VDD VSS
+Mp0 n0 a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out_n b n0 VDD p_18 w=0.8u l=0.2u
+Mn0 out_n a VSS VSS n_18 w=0.4u l=0.2u
+Mn1 out_n b VSS VSS n_18 w=0.4u l=0.2u
+Xinv out_n out VDD VSS inv
+c1 out 0 1n
+r2 out 0 100meg
+.ends
+
+.subckt xor a b out VDD VSS
+Xinv1 a a_not VDD VSS inv
+Xinv2 b b_not VDD VSS inv
+Mp0 p1 b_not VDD VDD p_18 w=0.8u l=0.2u
+Mp1 p1 a_not VDD VDD p_18 w=0.8u l=0.2u
+Mp2 out b p1 VDD p_18 w=0.8u l=0.2u
+Mp3 out a p1 VDD p_18 w=0.8u l=0.2u
+Mn0 out a_not n1 VSS n_18 w=0.4u l=0.2u
+Mn1 n1 b_not VSS VSS n_18 w=0.4u l=0.2u
+Mn2 out a n2 VSS n_18 w=0.4u l=0.2u
+Mn3 n2 b VSS VSS n_18 w=0.4u l=0.2u
+c1 out 0 3n
+r2 out 0 100meg
+.ends
+
+.subckt nand a b out VDD VSS
+Mp0 out a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out b VDD VDD p_18 w=0.8u l=0.2u
+Mn0 out a v2 VSS n_18 w=0.4u l=0.2u
+Mn1 v2 b VSS VSS n_18 w=0.4u l=0.2u
+c1 out 0 0.1n
+r2 out 0 100meg
+.ends
+
+.subckt and a b out VDD VSS
+Mp0 out_not a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out_not b VDD VDD p_18 w=0.8u l=0.2u
+Mn0 out_not a v2 VSS n_18 w=0.4u l=0.2u
+Mn1 v2 b VSS VSS n_18 w=0.4u l=0.2u
+Xinv out_not out VDD VSS inv 
+c1 out 0 1n
+r2 out 0 100meg
+.ends
+
+.subckt DFF CLK D Q Q_bar VDD VSS
+Xinv D D_inv VDD VSS inv
+Xinv2 CLK CLK_inv VDD VSS inv
+Xnand1 D CLK_inv a1 VDD VSS  nand 
+Xnand2 D_inv CLK_inv a2 VDD VSS nand
+Xnand3 a1 R S VDD VSS nand
+Xnand4 a2 S R VDD VSS nand
+Xnand5 S CLK a3 VDD VSS nand
+Xnand6 R CLK a4 VDD VSS nand
+Xnand7 a3 Q_bar Q VDD VSS nand
+xnand8 a4 Q Q_bar VDD VSS nand
+c1 Q 0 1n
+c2 Q_bar 0 1n
+*c3 R 0 10n
+*c4 S 0 10n
+r1 Q 0 100meg
+r2 Q_bar 0 100meg
+.ends
+
+*counter
+
+
+XDFF_0 CLK D_0 Q_0 Q_0bar VDD VSS DFF
+XDFF_1 CLK D_1 Q_1 Q_1bar VDD VSS DFF
+Xxor1 Q_1 Q_0 D_1 VDD VSS xor
+Xinv Q_0 D_0 VDD VSS inv
+VD VDD 0 dc 2
+VS VSS 0 dc 0
+*VD1 VDD1 0 dc 2
+*VS1 VSS1 0 dc 0
+*Vi Vx 0 pulse 0 2 100m 0m 0m 100m 200m 0
+*Vr RESET 0 pulse 2 2 80u 0u 0u 16 32 0
+Vclk CLK 0 pulse 0 2 160u 40u 40u 160u 400u 0
+.end

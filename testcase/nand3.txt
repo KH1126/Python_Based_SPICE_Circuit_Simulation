@@ -1,0 +1,19 @@
+
+*nandtest
+
+.subckt nand3 a b c output VDD VSS
+Mp0 out a VDD VDD p_18 w=0.8u l=0.2u
+Mp1 out b VDD VDD p_18 w=0.8u l=0.2u
+MP2 out c VDD VDD p_18 w=0.8u l=0.2u
+Mn0 out a v1 VSS n_18 w=0.4u l=0.2u
+Mn1 v1 b v2 VSS n_18 w=0.4u l=0.2u
+Mn2 v2 c VSS VSS n_18 w=0.4u l=0.2u
+.ends
+
+
+Xnand out out Vin out VDD 0 nand3
+
+VD VDD 0 dc 2
+
+Vin Vin 0 pulse 0 2 50m 0m 0m 50m 100m 0
+.end

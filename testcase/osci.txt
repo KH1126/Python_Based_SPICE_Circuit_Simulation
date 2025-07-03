@@ -1,0 +1,23 @@
+*oscillator
+.subckt cell vc vin1_pos vin1_neg vout1_pos vout1_neg vdd vss
+mp1 vout1_neg vin1_pos vdd vdd p_18 l=0.18u w=2u
+mp2 vout1_neg vout1_neg vdd vdd p_18 l=0.18u w=2u
+mp3 vout1_pos vout1_pos vdd vdd p_18 l=0.18u w=2u
+mp4 vout1_pos vin1_neg vdd vdd p_18 l=0.18u w=2u
+
+mn1 vout1_neg vin1_pos n1 vss n_18 l=0.18u w=2u
+mn2 vout1_pos vin1_neg n1 vss n_18 l=0.18u w=2u
+mn3 n1 n2 vss vss n_18 l=0.18u w=2u
+
+mp6 n2 n2 vdd vdd p_18 l=0.18u w=0.25u
+mp5 n2 vc vdd vdd p_18 l=0.18u w=0.25u
+mn4 n2 n2 vss vss n_18  l=0.18u w=1u
+.ends
+
+VD VDD 0 dc 2
+Vs VSS 0 dc -2
+Vctrl vc 0 dc 0.7
+X1 vc a1 a2 b1 b2 VDD VSS cell
+X1 vc b1 b2 c1 c2 VDD VSS cell
+X1 vc c1 c2 a1 a2 VDD VSS cell
+.end
